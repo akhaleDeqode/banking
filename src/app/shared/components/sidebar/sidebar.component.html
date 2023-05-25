@@ -1,1 +1,9 @@
-<p>sidebar works!</p>
+<div class="sidebar-container h-100 bg-white">
+    <div class="project-name-container d-flex justify-content-center align-items-end gap-3 p-3">
+        <p-avatar icon="pi pi-id-card" size="large" styleClass="bg-primary-color color-white" shape="circle"></p-avatar>
+        <h4 class="fw-600 color-primary">Banking</h4>
+    </div>
+    <div class="mt-5 px-3">
+        <p-panelMenu [model]="sidebarMenu" [multiple]="false"></p-panelMenu>
+    </div>
+</div>

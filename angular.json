@@ -30,7 +30,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/scss/_vars.scss",
+              "src/assets/scss/_utility.scss",
+              "src/assets/scss/_primeng.scss",
+              "src/assets/scss/bootstrap.min.css",
+              "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
           },
@@ -48,7 +55,19 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "assets": [
+                "src/favicon.ico",
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/",
+                  "output": "/assets/",
+                  "ignore": [
+                    "**/scss/**/*",
+                    "**/json/**/*"
+                  ]
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,

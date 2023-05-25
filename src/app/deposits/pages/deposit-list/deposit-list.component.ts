@@ -23,8 +23,7 @@ export class DepositListComponent {
 
   showAddModal() {
     this.ref = this.dialogService.open(CreateDepositComponent, {
-      header: 'Deposit Amount',
-      width: '34vw',
+      header: 'Deposit Amount'
     });
   }
   ngOnDestroy() {

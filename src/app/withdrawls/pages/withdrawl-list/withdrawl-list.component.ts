@@ -23,8 +23,7 @@ export class WithdrawlListComponent {
 
   showAddModal() {
     this.ref = this.dialogService.open(CreateWithdrawlComponent, {
-      header: 'Withdraw Amount',
-      width: '34vw',
+      header: 'Withdraw Amount'
     });
   }
 

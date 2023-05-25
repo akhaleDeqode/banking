@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { Component } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
-import { Table } from 'primeng/table';
 import { CreateDepositComponent } from '../../components/create-deposit/create-deposit.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-deposit-list',
@@ -11,10 +10,9 @@ import { CreateDepositComponent } from '../../components/create-deposit/create-d
 })
 export class DepositListComponent {
 
-  @ViewChild('dt') dt: Table | undefined;
-
   projects: any[] = [];
   ref!: DynamicDialogRef;
+  private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
     public dialogService: DialogService
@@ -23,17 +21,14 @@ export class DepositListComponent {
   ngOnInit(): void {
   }
 
-  applyFilterGlobal($event: any, stringVal: any) {
-    this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
-  }
-
   showAddModal() {
     this.ref = this.dialogService.open(CreateDepositComponent, {
-      header: 'Add Deposit',
+      header: 'Deposit Amount',
       width: '34vw',
     });
   }
   ngOnDestroy() {
-
+    this._unsubscribe$.next(true);
+    this._unsubscribe$.complete();
   }
 }

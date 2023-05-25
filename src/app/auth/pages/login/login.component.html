@@ -6,7 +6,7 @@
             class="d-flex flex-column gap-3 align-items-center justify-content-center login-form w-100">
             <div class="form-group w-100">
                 <input formControlName="email" [class.input-invalid]="isFormSubmitted && FormControl['email'].invalid"
-                    class="w-100" type="email" pInputText placeholder="Enter email">
+                    class="w-100" type="email" pInputText placeholder="Email">
                 <div *ngIf="isFormSubmitted && FormControl['email'].invalid" class="error-msg">
                     <p *ngIf="FormControl['email'].hasError('required')">Email is required</p>
                     <p *ngIf="FormControl['email'].hasError('email')">Invalid Email</p>
@@ -15,7 +15,7 @@
             <div class="form-group">
                 <p-password formControlName="password"
                     [class.input-invalid]="isFormSubmitted && FormControl['password'].invalid" class="p-password"
-                    [toggleMask]="true" [feedback]="false" placeholder="Enter password">
+                    [toggleMask]="true" [feedback]="false" placeholder="Password">
                 </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
                     <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>

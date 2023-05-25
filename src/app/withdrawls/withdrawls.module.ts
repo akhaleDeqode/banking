@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { WithdrawlsRoutingModule } from './withdrawls-routing.module';
 import { WithdrawlListComponent } from './pages/withdrawl-list/withdrawl-list.component';
 import { CreateWithdrawlComponent } from './components/create-withdrawl/create-withdrawl.component';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { PrimengModule } from '../primeng/primeng.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +17,11 @@ import { CreateWithdrawlComponent } from './components/create-withdrawl/create-w
   ],
   imports: [
     CommonModule,
-    WithdrawlsRoutingModule
-  ]
+    WithdrawlsRoutingModule,
+    PrimengModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [DialogService, ConfirmationService]
 })
 export class WithdrawlsModule { }

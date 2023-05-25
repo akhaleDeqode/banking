@@ -7,7 +7,7 @@
             <div class="d-flex gap-3">
                 <div class="form-group">
                     <input formControlName="firstName" [class.input-invalid]="isFormSubmitted && FormControl['firstName'].invalid" type="text"
-                        placeholder="Enter First name" class="w-100" pInputText>
+                        placeholder="First name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['firstName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['firstName'].hasError('required')">First name is required</p>
                         <p *ngIf="FormControl['firstName'].hasError('pattern')">Invalid First name</p>
@@ -15,7 +15,7 @@
                 </div> 
                 <div class="form-group">
                     <input formControlName="lastName" [class.input-invalid]="isFormSubmitted && FormControl['lastName'].invalid" type="text"
-                        placeholder="Enter Last name" class="w-100" pInputText>
+                        placeholder="Last name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['lastName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['lastName'].hasError('required')">Last name is required</p>
                         <p *ngIf="FormControl['lastName'].hasError('pattern')">Invalid First name</p>
@@ -25,7 +25,7 @@
             </div>
             <div class="form-group w-100">
                 <input formControlName="email" [class.input-invalid]="isFormSubmitted && FormControl['email'].invalid"
-                    class="w-100" type="email" pInputText placeholder="Enter email">
+                    class="w-100" type="email" pInputText placeholder="Email">
                 <div *ngIf="isFormSubmitted && FormControl['email'].invalid" class="error-msg">
                     <p *ngIf="FormControl['email'].hasError('required')">Email is required</p>
                     <p *ngIf="FormControl['email'].hasError('email')">Invalid Email</p>
@@ -34,7 +34,7 @@
             <div class="form-group w-100">
                 <p-password formControlName="password"
                     [class.input-invalid]="isFormSubmitted && FormControl['password'].invalid" styleClass="w-100"
-                    class="p-password w-100" [toggleMask]="true" [feedback]="false" placeholder="Enter password">
+                    class="p-password w-100" [toggleMask]="true" [feedback]="false" placeholder="Password">
                 </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
                     <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>

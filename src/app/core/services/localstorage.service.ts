@@ -16,4 +16,8 @@ export class LocalstorageService {
   set Token(value: string) {
     localStorage.setItem(this.token, value);
   }
+
+  removeToken(): void {
+    localStorage.removeItem('ega_token');
+  }
 }

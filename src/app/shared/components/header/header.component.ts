@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +17,15 @@ export class HeaderComponent {
       label: 'Logout',
       icon: 'pi pi-sign-out',
       command: () => {
-        // this.logout();
+        this.logout();
       }
     }
   ];
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
-    private _router: Router
+    private _router: Router,
+    private _authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +54,11 @@ export class HeaderComponent {
         this.breadCrumb = '';
         break;
     }
+  }
+
+  logout(): void {
+    this._authService.logout();
+    this._router.navigate(['/auth/login']);
   }
 
   ngOnDestroy(): void {

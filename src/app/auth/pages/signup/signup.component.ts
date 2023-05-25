@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { Signup } from 'src/app/core/models/auth.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,9 +13,11 @@ export class SignupComponent {
 
   signupForm!: FormGroup;
   isFormSubmitted: boolean = false;
+  private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -20,8 +25,7 @@ export class SignupComponent {
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]],
-      bankId: [null, Validators.required]
+      password: [null, [Validators.required]]
     });
   }
 
@@ -32,7 +36,20 @@ export class SignupComponent {
   submit(): void {
     this.isFormSubmitted = true;
     console.log(this.signupForm.value);
+    if (this.signupForm.valid) {
+      let payload: Signup = this.signupForm.value;
+      this._authService.signup(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
+        next: (res: any) => {
+          console.log(res);
 
+        }
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe$.next(true);
+    this._unsubscribe$.complete();
   }
 
 }

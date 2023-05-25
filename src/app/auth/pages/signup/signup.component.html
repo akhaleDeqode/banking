@@ -6,15 +6,15 @@
             class="d-flex flex-column gap-3 align-items-center justify-content-center login-form w-100">
             <div class="d-flex gap-3">
                 <div class="form-group">
-                    <input [class.input-invalid]="isFormSubmitted && FormControl['firstName'].invalid" type="text"
+                    <input formControlName="firstName" [class.input-invalid]="isFormSubmitted && FormControl['firstName'].invalid" type="text"
                         placeholder="Enter First name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['firstName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['firstName'].hasError('required')">First name is required</p>
                         <p *ngIf="FormControl['firstName'].hasError('pattern')">Invalid First name</p>
                     </div>
-                </div>
+                </div> 
                 <div class="form-group">
-                    <input [class.input-invalid]="isFormSubmitted && FormControl['lastName'].invalid" type="text"
+                    <input formControlName="lastName" [class.input-invalid]="isFormSubmitted && FormControl['lastName'].invalid" type="text"
                         placeholder="Enter Last name" class="w-100" pInputText>
                     <div *ngIf="isFormSubmitted && FormControl['lastName'].invalid" class="error-msg">
                         <p *ngIf="FormControl['lastName'].hasError('required')">Last name is required</p>
@@ -38,13 +38,6 @@
                 </p-password>
                 <div *ngIf="isFormSubmitted && FormControl['password'].invalid" class="error-msg">
                     <p *ngIf="FormControl['password'].hasError('required')">Password is required</p>
-                </div>
-            </div>
-            <div class="form-group w-100">
-                <p-dropdown [class.input-invalid]="isFormSubmitted && FormControl['bankId'].invalid"
-                    placeholder="Select Bank" styleClass="w-100"></p-dropdown>
-                <div *ngIf="isFormSubmitted && FormControl['bankId'].invalid" class="error-msg">
-                    <p *ngIf="FormControl['bankId'].hasError('required')">Please select your bank</p>
                 </div>
             </div>
             <p-button class="w-100" styleClass="w-100" type="submit" label="Register"></p-button>

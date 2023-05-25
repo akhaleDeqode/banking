@@ -5,11 +5,20 @@
         display: none;
     }
 
-    // .mobile-sidebar-container {
-    //     height: 70px;
-    //     position: fixed;
-    //     bottom: 0;
-    // }
+    .mobile-sidebar-container {
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        z-index: 99;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .recent-transaction {
+        max-width: none !important;
+        width: 100% !important;
+        min-width: 300px !important;
+    }
 }
 
 @media only screen and (max-width: 500px) {

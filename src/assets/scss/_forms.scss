@@ -14,6 +14,13 @@ p-password.input-invalid {
     }
 }
 
+p-dropdown.input-invalid {
+    .p-dropdown {
+        border: 3px solid rgb(255, 93, 93) !important;
+        border-radius: 7px;
+    }
+}
+
 input.input-invalid {
     border: 3px solid rgb(255, 93, 93) !important;
     border-radius: 7px;

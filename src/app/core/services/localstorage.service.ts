@@ -5,5 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class LocalstorageService {
 
+  token: string = 'ega_token';
+
   constructor() { }
+
+  get Token(): string {
+    return localStorage.getItem(this.token) || '';
+  }
+
+  set Token(value: string) {
+    localStorage.setItem(this.token, value);
+  }
 }

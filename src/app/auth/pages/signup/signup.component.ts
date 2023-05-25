@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Signup } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -17,7 +18,8 @@ export class SignupComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class SignupComponent {
       this._authService.signup(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
         next: (res: any) => {
           console.log(res);
-
+          this._router.navigate(['/auth/login']);
         }
       });
     }

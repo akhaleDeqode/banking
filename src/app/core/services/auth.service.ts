@@ -16,7 +16,7 @@ export class AuthService {
   ) { }
 
   signup(data: Signup): Observable<any> {
-    return this._http.post(`${this._base}auth/signup`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
+    return this._http.post(`${this._base}user/register`, data).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }

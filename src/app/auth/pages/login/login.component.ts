@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Login } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,9 @@ export class LoginComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _localStorageService: LocalstorageService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +43,10 @@ export class LoginComponent {
       this._authService.login(paylod).pipe(takeUntil(this._unsubscribe$)).subscribe({
         next: (res: any) => {
           console.log(res);
-
+          this._localStorageService.Token = res?.bearer;
+          this._router.navigate(['/dashboard/home']);
         }
-      })
+      });
     }
   }
 

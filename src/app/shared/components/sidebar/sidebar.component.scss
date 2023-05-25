@@ -2,11 +2,16 @@
 
 .sidebar-container {
     width: 250px;
-    // position: fixed;
 
     .project-name-container {
         height: 90px;
     }
+}
+
+.mobile-sidebar-container {
+    height: 70px;
+    position: fixed;
+    bottom: 0;
 }
 
 ::ng-deep .p-panelmenu .p-panelmenu-header>a {
@@ -42,4 +47,9 @@
 
 ::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
     margin-left: 10px !important;
+}
+
+::ng-deep .p-tabmenu .p-tabmenu-nav {
+    display: flex;
+    justify-content: space-around;
 }

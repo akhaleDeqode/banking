@@ -22,7 +22,7 @@ export class SidebarComponent {
       expanded: this.isRouteActive('/deposits/list'),
     },
     {
-      label: 'Withdrawls',
+      label: 'Withdrawals',
       icon: 'pi pi-minus-circle',
       routerLink: '/withdrawls/list',
       expanded: this.isRouteActive('/withdrawls/list'),

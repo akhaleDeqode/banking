@@ -1,5 +1,5 @@
 <header class="header-container d-flex justify-content-between align-items-center p-3">
-    <b class="m-0 fw-700 text-muted">Dashboard</b>
+    <b class="m-0 fw-700 text-muted">{{breadCrumb}}</b>
     <div class="d-flex align-items-center">
         <div (click)="menu.toggle($event)" class="d-flex gap-2 cursor-pointer align-items-center">
             <p-avatar icon="pi {{userData ? 'pi-user' : 'pi-spin pi-spinner'}}" size="large"

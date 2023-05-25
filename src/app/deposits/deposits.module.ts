@@ -7,6 +7,7 @@ import { CreateDepositComponent } from './components/create-deposit/create-depos
 import { PrimengModule } from '../primeng/primeng.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { ConfirmationService } from 'primeng/api';
   imports: [
     CommonModule,
     DepositsRoutingModule,
-    PrimengModule
+    PrimengModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [DialogService, ConfirmationService]
 })

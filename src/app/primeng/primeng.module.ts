@@ -19,6 +19,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { PasswordModule } from 'primeng/password';
 
 const primeNgModules = [
   ButtonModule,
@@ -41,6 +42,7 @@ const primeNgModules = [
   DialogModule,
   ConfirmDialogModule,
   ToastModule,
+  PasswordModule
 ]
 
 @NgModule({

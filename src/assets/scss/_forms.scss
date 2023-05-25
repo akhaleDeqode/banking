@@ -1,0 +1,20 @@
+.error-msg {
+    p {
+        font-size: smaller !important;
+        color: rgb(255, 93, 93) !important;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+p-password.input-invalid {
+    input {
+        border: 3px solid rgb(255, 93, 93) !important;
+        border-radius: 7px;
+    }
+}
+
+input.input-invalid {
+    border: 3px solid rgb(255, 93, 93) !important;
+    border-radius: 7px;
+}

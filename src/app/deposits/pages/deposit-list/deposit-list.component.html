@@ -17,20 +17,12 @@
             <tr>
                 <th pResizableColumn style="width:20%">Id</th>
                 <th pResizableColumn style="width:20%">Title</th>
-                <th pResizableColumn style="width:20%">Price</th>
-                <th pResizableColumn style="width:20%">Category</th>
-                <th pResizableColumn>Image</th>
-                <th pResizableColumn style="width:20%">Rating</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-project>
             <tr>
                 <td> {{ project.id}}</td>
                 <td> {{ project.title}}</td>
-                <td> {{ project.price}}</td>
-                <td> {{ project.category}}</td>
-                <td> <img src="{{ project.image}}" width="30px"></td>
-                <td> {{ project.rating.rate}}</td>
             </tr>
         </ng-template>
     </p-table>

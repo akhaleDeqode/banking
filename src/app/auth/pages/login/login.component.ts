@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { Login } from 'src/app/core/models/auth.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent {
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
     private _localStorageService: LocalstorageService,
-    private _router: Router
+    private _router: Router,
+    private _toasterService: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +45,8 @@ export class LoginComponent {
       let paylod: Login = this.loginForm.value;
       this._authService.login(paylod).pipe(takeUntil(this._unsubscribe$)).subscribe({
         next: (res: any) => {
-          console.log(res);
+          // console.log(res);
+          this._toasterService.success('Success', 'Logged in Successfully');
           this._localStorageService.Token = res?.bearer;
           this._router.navigate(['/dashboard/home']);
         }

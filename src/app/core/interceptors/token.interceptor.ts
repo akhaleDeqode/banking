@@ -3,16 +3,19 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { LocalstorageService } from '../services/localstorage.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
-    private _localStorageService: LocalstorageService
+    private _localStorageService: LocalstorageService,
+    private _errorHandler: ErrorHandlerService
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -31,6 +34,14 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this._errorHandler.handleError(error);
+        throw (error);
+      })
+    )
   }
 }

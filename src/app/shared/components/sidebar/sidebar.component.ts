@@ -18,14 +18,14 @@ export class SidebarComponent {
     {
       label: 'Deposits',
       icon: 'pi pi-bolt',
-      routerLink: '/actions/list',
-      expanded: this.isRouteActive('/actions'),
+    routerLink: '/deposits/list',
+      expanded: this.isRouteActive('/deposits/list'),
     },
     {
       label: 'Withdrawls',
       icon: 'pi pi-minus-circle',
-      routerLink: '/risks',
-      expanded: this.isRouteActive('/risks'),
+      routerLink: '/withdrawls/list',
+      expanded: this.isRouteActive('/withdrawls/list'),
     }
   ];
 

@@ -34,7 +34,7 @@ export class WithdrawlListComponent {
   getAllWithdraws(queryParams: any): void {
     this._withdrawService.getAllWithdrawals(queryParams).pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.withdrawsList = res?.transactionList;
         this.totalData = res?.listSize;
       }
@@ -42,8 +42,9 @@ export class WithdrawlListComponent {
   }
 
   onPageChange(event: any): void {
+    const page = Math.floor(event?.first / event?.rows);
     this._router.navigate([], {
-      queryParams: { pageNumber: event?.first },
+      queryParams: { pageNumber: page },
       queryParamsHandling: 'merge'
     });
   }

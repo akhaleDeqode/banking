@@ -34,7 +34,7 @@ export class DepositListComponent {
   getAllDeposits(queryParams: any): void {
     this._depositService.getAllDeposits(queryParams).pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.depositsList = res?.transactionList;
         this.totalData = res?.listSize;
       }
@@ -42,10 +42,10 @@ export class DepositListComponent {
   }
 
   onPageChange(event: any): void {
-    console.log(event);
+    const page = Math.floor(event?.first / event?.rows);
     this._router.navigate([], {
-      queryParamsHandling: 'merge',
-      queryParams: { pageNumber: event?.first }
+      queryParams: { pageNumber: page },
+      queryParamsHandling: 'merge'
     });
   }
 

@@ -16,6 +16,7 @@ export class WithdrawlListComponent {
   ref!: DynamicDialogRef;
   withdrawsList: any[] = [];
   totalData: number = 0;
+  currentPage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -28,6 +29,9 @@ export class WithdrawlListComponent {
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllWithdraws(res);
+      if (res?.pageNumber) {
+        this.currentPage = res?.pageNumber;
+      }
     });
   }
 
@@ -58,8 +62,7 @@ export class WithdrawlListComponent {
 
   onCloseDialog() {
     this.ref.onClose.subscribe((res: any) => {
-      console.log(res);
-      this.withdrawsList.push(res?.data);
+      this.ngOnInit();
     });
   }
 

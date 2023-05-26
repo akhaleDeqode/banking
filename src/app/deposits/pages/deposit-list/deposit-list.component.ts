@@ -16,6 +16,7 @@ export class DepositListComponent {
   ref!: DynamicDialogRef;
   depositsList!: any[];
   totalData: number = 0;
+  currentPage: number = 0;
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -28,6 +29,9 @@ export class DepositListComponent {
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((res: any) => {
       this.getAllDeposits(res);
+      if (res?.pageNumber) {
+        this.currentPage = res?.pageNumber;
+      }
     });
   }
 
@@ -58,8 +62,7 @@ export class DepositListComponent {
 
   onCloseDialog(): void {
     this.ref.onClose.subscribe((res: any) => {
-      console.log(res);
-      this.depositsList.push(res?.data);
+      this.ngOnInit();
     });
   }
 

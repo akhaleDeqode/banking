@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { UserStore } from 'src/app/core/models/user.model';
+import { Withdraw } from 'src/app/core/models/withdraw.model';
+import { StoreService } from 'src/app/core/services/store.service';
+import { ToasterService } from 'src/app/core/services/toaster.service';
+import { WithdrawService } from 'src/app/core/services/withdraw.service';
 
 @Component({
   selector: 'app-create-withdrawl',
@@ -11,15 +16,30 @@ export class CreateWithdrawlComponent {
 
   withdrawalForm!: FormGroup;
   isFormSubmitted: boolean = false;
+  accountId!: string;
   private _unsubscribe$ = new Subject<boolean>();
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _withDrawService: WithdrawService,
+    private _storeService: StoreService,
+    private _toasterService: ToasterService
+  ) { }
 
   ngOnInit(): void {
     this.withdrawalForm = this._formBuilder.group({
       accountId: [null, Validators.required],
       amount: [null, Validators.required],
-      transactionType: ['withdrawal']
+      transactionType: ['withdraw']
+    });
+    this.getStoreData();
+  }
+
+  getStoreData(): void {
+    this._storeService.userData.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
+      this.accountId = res?.accountId;
+      this.FormControl['accountId'].setValue(this.accountId);
+      this.FormControl['accountId'].disable();
     });
   }
 
@@ -30,7 +50,14 @@ export class CreateWithdrawlComponent {
   submit(): void {
     this.isFormSubmitted = true;
     console.log(this.withdrawalForm.value);
-
+    let payload: Withdraw = this.withdrawalForm.value;
+    payload['accountId'] = this.accountId;
+    this._withDrawService.withdrawAmount(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this._toasterService.success('Success', 'Amount Withdrawed');
+      }
+    });
   }
 
   ngOnDestroy(): void {

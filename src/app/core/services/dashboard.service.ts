@@ -1,12 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, timeout } from 'rxjs';
+import { Observable, timeout, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransationService {
+export class DashboardService {
+
 
   private _base = environment.baseUrl;
 
@@ -15,7 +16,7 @@ export class TransationService {
   ) { }
 
   getAllTransactions(): Observable<any> {
-    return this._http.get(`${this._base}transaction`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
+    return this._http.get(`${this._base}transaction/get`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
       throw error;
     }));
   }

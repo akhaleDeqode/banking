@@ -21,6 +21,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { TooltipModule } from 'primeng/tooltip';
 
 const primeNgModules = [
   ButtonModule,
@@ -44,7 +45,8 @@ const primeNgModules = [
   ConfirmDialogModule,
   ToastModule,
   PasswordModule,
-  TabMenuModule
+  TabMenuModule,
+  TooltipModule
 ]
 
 @NgModule({

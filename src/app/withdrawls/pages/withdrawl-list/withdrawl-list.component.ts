@@ -50,6 +50,14 @@ export class WithdrawlListComponent {
     this.ref = this.dialogService.open(CreateWithdrawlComponent, {
       header: 'Withdraw Amount'
     });
+    this.onCloseDialog();
+  }
+
+  onCloseDialog() {
+    this.ref.onClose.subscribe((res: any) => {
+      console.log(res);
+      this.withdrawsList.push(res?.data);
+    });
   }
 
   ngOnDestroy() {

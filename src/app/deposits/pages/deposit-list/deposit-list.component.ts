@@ -51,7 +51,16 @@ export class DepositListComponent {
     this.ref = this.dialogService.open(CreateDepositComponent, {
       header: 'Deposit Amount'
     });
+    this.onCloseDialog();
   }
+
+  onCloseDialog(): void {
+    this.ref.onClose.subscribe((res: any) => {
+      console.log(res);
+      this.depositsList.push(res?.data);
+    });
+  }
+
   ngOnDestroy() {
     this._unsubscribe$.next(true);
     this._unsubscribe$.complete();

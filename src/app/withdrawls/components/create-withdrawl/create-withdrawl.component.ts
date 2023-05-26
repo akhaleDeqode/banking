@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStore } from 'src/app/core/models/user.model';
 import { Withdraw } from 'src/app/core/models/withdraw.model';
@@ -23,7 +24,8 @@ export class CreateWithdrawlComponent {
     private _formBuilder: FormBuilder,
     private _withDrawService: WithdrawService,
     private _storeService: StoreService,
-    private _toasterService: ToasterService
+    private _toasterService: ToasterService,
+    private _dialogRef: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class CreateWithdrawlComponent {
       next: (res: any) => {
         console.log(res);
         this._toasterService.success('Success', 'Amount Withdrawed');
+        this._dialogRef.close({ data: res });
       }
     });
   }

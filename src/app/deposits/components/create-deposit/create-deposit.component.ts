@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Deposit } from 'src/app/core/models/deposit.model';
 import { UserStore } from 'src/app/core/models/user.model';
@@ -25,7 +25,8 @@ export class CreateDepositComponent {
     private _formBuilder: FormBuilder,
     private _depositService: DepositService,
     private _storeService: StoreService,
-    private _toasterService: ToasterService
+    private _toasterService: ToasterService,
+    private _dialogRef: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -58,8 +59,9 @@ export class CreateDepositComponent {
         next: (res: any) => {
           console.log(res);
           this._toasterService.success('Success', 'Amount Deposited');
+          this._dialogRef.close({ data: res });
         }
-      })
+      });
     }
   }
 

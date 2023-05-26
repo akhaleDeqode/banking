@@ -1,7 +1,7 @@
 <div class="card">
-    <p-table [value]="depositsList" (onPage)="onPageChange($event)" [resizableColumns]="true" styleClass="p-datatable-gridlines"
-        [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    <p-table [value]="depositsList" (onPage)="onPageChange($event)" [resizableColumns]="true"
+        styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="10"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
         <ng-template pTemplate="caption">
             <div class="d-flex justify-content-end">
                 <button pbutton="" icon="pi pi-plus" label="New"

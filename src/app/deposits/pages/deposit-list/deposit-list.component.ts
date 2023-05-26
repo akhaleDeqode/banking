@@ -36,7 +36,7 @@ export class DepositListComponent {
         console.log(res);
         this.depositsList = res;
       }
-    })
+    });
   }
 
   onPageChange(event: any): void {

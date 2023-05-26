@@ -3,6 +3,7 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { CreateWithdrawlComponent } from '../../components/create-withdrawl/create-withdrawl.component';
 import { Subject, takeUntil } from 'rxjs';
 import { WithdrawService } from 'src/app/core/services/withdraw.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-withdrawl-list',
@@ -18,20 +19,31 @@ export class WithdrawlListComponent {
 
   constructor(
     public dialogService: DialogService,
-    private _withdrawService: WithdrawService
+    private _withdrawService: WithdrawService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getAllWithdraws();
+    this._activatedRoute.queryParams.subscribe((res: any) => {
+      this.getAllWithdraws(res);
+    });
   }
 
-  getAllWithdraws(): void {
-    this._withdrawService.getAllWithdrawals().pipe(takeUntil(this._unsubscribe$)).subscribe({
+  getAllWithdraws(queryParams: any): void {
+    this._withdrawService.getAllWithdrawals(queryParams).pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
         this.withdrawsList = res;
       }
-    })
+    });
+  }
+
+  onPageChange(event: any): void {
+    this._router.navigate([], {
+      queryParams: { pageNumber: event?.first },
+      queryParamsHandling: 'merge'
+    });
   }
 
   showAddModal() {

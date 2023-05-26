@@ -7,6 +7,7 @@ import { UserStore } from 'src/app/core/models/user.model';
 import { DepositService } from 'src/app/core/services/deposit.service';
 import { StoreService } from 'src/app/core/services/store.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { UtilityService } from 'src/app/core/services/utility.service';
 
 @Component({
   selector: 'app-create-deposit',
@@ -26,13 +27,14 @@ export class CreateDepositComponent {
     private _depositService: DepositService,
     private _storeService: StoreService,
     private _toasterService: ToasterService,
-    private _dialogRef: DynamicDialogRef
+    private _dialogRef: DynamicDialogRef,
+    public _utility: UtilityService
   ) { }
 
   ngOnInit(): void {
     this.depositForm = this._formBuilder.group({
-      accountId: ['898231342', [Validators.required]],
-      amount: [null, [Validators.required]],
+      accountId: [null, [Validators.required]],
+      amount: [null, [Validators.required, Validators.min(0)]],
       transactionType: ['deposit']
     });
     this.getStoreData();
@@ -43,6 +45,7 @@ export class CreateDepositComponent {
       console.log(res);
       this.accountId = res?.accountId;
       this.FormControl['accountId'].setValue(this.accountId);
+      this.FormControl['accountId'].disable();
     });
   }
 
@@ -54,7 +57,8 @@ export class CreateDepositComponent {
     this.isFormSubmitted = true;
     console.log(this.depositForm.value);
     if (this.depositForm.valid) {
-      const payload: Deposit = this.depositForm.value;
+      let payload: Deposit = this.depositForm.value;
+      payload['accountId'] = this.accountId;
       this._depositService.depositAmount(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
         next: (res: any) => {
           console.log(res);

@@ -31,7 +31,7 @@ export class CreateWithdrawlComponent {
   ngOnInit(): void {
     this.withdrawalForm = this._formBuilder.group({
       accountId: [null, Validators.required],
-      amount: [null, Validators.required],
+      amount: [null, [Validators.required, Validators.min(0)]],
       transactionType: ['withdraw']
     });
     this.getStoreData();
@@ -39,8 +39,6 @@ export class CreateWithdrawlComponent {
 
   getStoreData(): void {
     this._storeService.userData.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
-      console.log(res);
-      
       this.accountId = res?.accountId;
       this.FormControl['accountId'].setValue(this.accountId);
       this.FormControl['accountId'].disable();

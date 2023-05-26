@@ -9,10 +9,13 @@
         </div>
     </div>
     <div class="form-group w-100">
-        <input formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
-            class="w-100" type="text" pInputText placeholder="Amount">
+        <p-inputNumber formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
+            inputId="integeronly" placeholder="Amount"></p-inputNumber>
+        <!-- <input (keypress)="_utility.numberOnly($event)" formControlName="amount" [class.input-invalid]="isFormSubmitted && FormControl['amount'].invalid"
+            class="w-100" type="text" pInputText placeholder="Amount"> -->
         <div *ngIf="isFormSubmitted && FormControl['amount'].invalid" class="error-msg">
             <p *ngIf="FormControl['amount'].hasError('required')">Amount is required</p>
+            <p *ngIf="FormControl['amount'].hasError('min')">Amount should be greater than zero</p>
         </div>
     </div>
     <p-button class="w-100" styleClass="w-100" type="submit" label="Deposit"></p-button>

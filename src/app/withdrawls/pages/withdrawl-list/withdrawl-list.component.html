@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table (onPage)="onPageChange($event)" [value]="withdrawsList" [resizableColumns]="true"
+    <p-table (onPage)="onPageChange($event)" [totalRecords]="totalData" [value]="withdrawsList" [resizableColumns]="true"
         styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '40rem'}" [paginator]="true" [rows]="5"
         [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
         <ng-template pTemplate="caption">

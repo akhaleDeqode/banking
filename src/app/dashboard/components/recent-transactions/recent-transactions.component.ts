@@ -24,7 +24,7 @@ export class RecentTransactionsComponent {
     this._dashboardService.getAllTransactions().pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.transactionList = res;
+        this.transactionList = res?.transactionList;
       }
     });
   }

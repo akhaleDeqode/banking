@@ -25,8 +25,9 @@ export class ProjectLayoutComponent {
   getUserDetail(): void {
     this._userService.getUserDetail().pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
-        console.log(res);
-        this._storeService.StoreData = { accountId: res?.accountId, firstName: res?.firstName, lastName: res?.lastName, email: res?.email, userId: res?.userId };
+        // console.log(res);
+        this.userData = { accountId: res?.accountId, firstName: res?.firstName, lastName: res?.lastName, email: res?.email, userId: res?.userId };
+        this._storeService.StoreData = this.userData;
       }
     });
   }

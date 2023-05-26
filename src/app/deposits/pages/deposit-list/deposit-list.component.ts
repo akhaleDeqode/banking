@@ -13,6 +13,7 @@ export class DepositListComponent {
 
   projects: any[] = [];
   ref!: DynamicDialogRef;
+  depositsList!: any[];
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -28,7 +29,7 @@ export class DepositListComponent {
     this._depositService.getAllDeposits().pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
-
+        this.depositsList = res;
       }
     })
   }

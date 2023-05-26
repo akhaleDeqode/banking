@@ -6,6 +6,7 @@ import { ProjectLayoutComponent } from './layouts/project-layout/project-layout.
 import { CardLoaderComponent } from './components/card-loader/card-loader.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { RouterModule } from '@angular/router';
+import { EmptyScreenComponent } from './components/empty-screen/empty-screen.component';
 
 
 
@@ -14,13 +15,14 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     SidebarComponent,
     ProjectLayoutComponent,
-    CardLoaderComponent
+    CardLoaderComponent,
+    EmptyScreenComponent
   ],
   imports: [
     CommonModule,
     PrimengModule,
     RouterModule
   ],
-  exports: [HeaderComponent, PrimengModule, CardLoaderComponent]
+  exports: [HeaderComponent, PrimengModule, CardLoaderComponent, EmptyScreenComponent]
 })
 export class SharedModule { }

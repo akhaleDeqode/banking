@@ -1,7 +1,7 @@
 <div class="card p-4 w-100">
     <p class="fw-700 fs-16">Recent Transactions</p>
 
-    <ul class="transaction-entry p-0">
+    <ul *ngIf="transactionList?.length; else emptyScreen" class="transaction-entry p-0">
         <li *ngFor="let item of transactionList" class="d-flex justify-content-between w-100 border-bottom py-3">
             <div>
                 <p pTooltip="Account Id" class="m-0 fw-600">{{item?.accountId}}</p>
@@ -15,3 +15,7 @@
         </li>
     </ul>
 </div>
+
+<ng-template #emptyScreen>
+    <app-empty-screen></app-empty-screen>
+</ng-template>

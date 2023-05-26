@@ -13,6 +13,7 @@ export class WithdrawlListComponent {
 
   projects: any[] = [];
   ref!: DynamicDialogRef;
+  withdrawsList: any[] = [];
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
@@ -28,7 +29,7 @@ export class WithdrawlListComponent {
     this._withdrawService.getAllWithdrawals().pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
-        
+        this.withdrawsList = res;
       }
     })
   }

@@ -17,3 +17,7 @@
         box-shadow: vars.$card-shadow;
     }
 }
+
+::ng-deep .p-input-icon-right>.p-inputtext {
+    width: 100% !important;
+}

@@ -20,4 +20,10 @@ export class DashboardService {
       throw error;
     }));
   }
+
+  getAccountDetail(): Observable<any> {
+    return this._http.get(`${this._base}account/get`).pipe(timeout(75000), catchError((error: HttpErrorResponse) => {
+      throw error;
+    }));
+  }
 }

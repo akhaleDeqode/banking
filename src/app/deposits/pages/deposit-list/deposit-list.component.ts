@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { CreateDepositComponent } from '../../components/create-deposit/create-deposit.component';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { DepositService } from 'src/app/core/services/deposit.service';
 
 @Component({
   selector: 'app-deposit-list',
@@ -15,10 +16,21 @@ export class DepositListComponent {
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private _depositService: DepositService
   ) { }
 
   ngOnInit(): void {
+    this.getAllDeposits();
+  }
+
+  getAllDeposits(): void {
+    this._depositService.getAllDeposits().pipe(takeUntil(this._unsubscribe$)).subscribe({
+      next: (res: any) => {
+        console.log(res);
+
+      }
+    })
   }
 
   showAddModal() {

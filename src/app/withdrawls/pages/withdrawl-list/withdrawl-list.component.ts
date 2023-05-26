@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { CreateWithdrawlComponent } from '../../components/create-withdrawl/create-withdrawl.component';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { WithdrawService } from 'src/app/core/services/withdraw.service';
 
 @Component({
   selector: 'app-withdrawl-list',
@@ -15,10 +16,21 @@ export class WithdrawlListComponent {
   private _unsubscribe$ = new Subject<boolean>();
 
   constructor(
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private _withdrawService: WithdrawService
   ) { }
 
   ngOnInit(): void {
+    this.getAllWithdraws();
+  }
+
+  getAllWithdraws(): void {
+    this._withdrawService.getAllWithdrawals().pipe(takeUntil(this._unsubscribe$)).subscribe({
+      next: (res: any) => {
+        console.log(res);
+
+      }
+    })
   }
 
   showAddModal() {

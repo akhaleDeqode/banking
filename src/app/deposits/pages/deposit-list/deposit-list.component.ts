@@ -3,6 +3,7 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { CreateDepositComponent } from '../../components/create-deposit/create-deposit.component';
 import { Subject, takeUntil } from 'rxjs';
 import { DepositService } from 'src/app/core/services/deposit.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-deposit-list',
@@ -18,20 +19,32 @@ export class DepositListComponent {
 
   constructor(
     public dialogService: DialogService,
-    private _depositService: DepositService
+    private _depositService: DepositService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getAllDeposits();
+    this._activatedRoute.queryParams.subscribe((res: any) => {
+      this.getAllDeposits(res);
+    });
   }
 
-  getAllDeposits(): void {
-    this._depositService.getAllDeposits().pipe(takeUntil(this._unsubscribe$)).subscribe({
+  getAllDeposits(queryParams: any): void {
+    this._depositService.getAllDeposits(queryParams).pipe(takeUntil(this._unsubscribe$)).subscribe({
       next: (res: any) => {
         console.log(res);
         this.depositsList = res;
       }
     })
+  }
+
+  onPageChange(event: any): void {
+    console.log(event);
+    this._router.navigate([], {
+      queryParamsHandling: 'merge',
+      queryParams: { pageNumber: event?.first }
+    });
   }
 
   showAddModal() {

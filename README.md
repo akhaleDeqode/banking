@@ -1,4 +1,4 @@
-# BankingApp
+# EGA Banking
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
@@ -9,6 +9,44 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     node -v
 #### 3. Install Angular CLI
     npm install -g @angular/cli@latest
+
+### Folder Structure
+
+```
+  .
+  └── src
+      ├── app
+      │   ├── auth
+                ├── pages
+                    ├── login
+                    ├── signup
+      |   ├── core
+                ├── guards
+                ├── interceptors
+                ├── models
+                ├── routes
+                ├── services
+      │   ├── dashboard
+                ├── components
+                    ├── current-balance
+                    ├── recent-transactions
+                ├── pages
+                    ├── dashboard
+      │   ├── deposits
+                ├── components
+                    ├── create-deposits
+                ├── pages
+                    ├── desposit-list
+      │   ├── withdrawls
+                ├── components
+                    ├── create-withdrawls
+                ├── pages
+                    ├── withdrawls-list
+      │   └── shared
+                ├── components
+                ├── layouts
+      └── styles
+```
 
 ## Development server
 

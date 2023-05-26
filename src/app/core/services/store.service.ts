@@ -25,4 +25,8 @@ export class StoreService {
   set StoreData(data: UserStore) {
     this._userData$.next(data);
   }
+
+  resetStore(): void {
+    this._userData$.next(this._initialState);
+  }
 }

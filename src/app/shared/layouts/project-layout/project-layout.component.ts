@@ -35,6 +35,7 @@ export class ProjectLayoutComponent {
   ngOnDestroy(): void {
     this._unsubscribe$.next(true);
     this._unsubscribe$.complete();
+    this._storeService.resetStore();
   }
 
 }

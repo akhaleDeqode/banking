@@ -39,6 +39,8 @@ export class CreateWithdrawlComponent {
 
   getStoreData(): void {
     this._storeService.userData.pipe(takeUntil(this._unsubscribe$)).subscribe((res: UserStore) => {
+      console.log(res);
+      
       this.accountId = res?.accountId;
       this.FormControl['accountId'].setValue(this.accountId);
       this.FormControl['accountId'].disable();
@@ -52,15 +54,17 @@ export class CreateWithdrawlComponent {
   submit(): void {
     this.isFormSubmitted = true;
     console.log(this.withdrawalForm.value);
-    let payload: Withdraw = this.withdrawalForm.value;
-    payload['accountId'] = this.accountId;
-    this._withDrawService.withdrawAmount(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this._toasterService.success('Success', 'Amount Withdrawed');
-        this._dialogRef.close({ data: res });
-      }
-    });
+    if (this.withdrawalForm.valid) {
+      let payload: Withdraw = this.withdrawalForm.value;
+      payload['accountId'] = this.accountId;
+      this._withDrawService.withdrawAmount(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this._toasterService.success('Success', 'Amount Withdrawed');
+          this._dialogRef.close({ data: res });
+        }
+      });
+    }
   }
 
   ngOnDestroy(): void {

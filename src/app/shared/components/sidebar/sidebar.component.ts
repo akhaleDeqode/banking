@@ -18,7 +18,7 @@ export class SidebarComponent {
     {
       label: 'Deposits',
       icon: 'pi pi-bolt',
-    routerLink: '/deposits/list',
+      routerLink: '/deposits/list',
       expanded: this.isRouteActive('/deposits/list'),
     },
     {

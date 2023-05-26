@@ -39,7 +39,7 @@ export class SignupComponent {
 
   submit(): void {
     this.isFormSubmitted = true;
-    console.log(this.signupForm.value);
+    // console.log(this.signupForm.value);
     if (this.signupForm.valid) {
       let payload: Signup = this.signupForm.value;
       this._authService.signup(payload).pipe(takeUntil(this._unsubscribe$)).subscribe({

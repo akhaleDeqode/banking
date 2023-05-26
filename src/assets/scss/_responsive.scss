@@ -13,6 +13,12 @@
     }
 }
 
+/*----- Sidebar responsive classes ends -----*/
+
+
+/*----- Dashboard responsive classes starts -----*/
+
+
 @media only screen and (max-width: 650px) {
     .recent-transaction {
         max-width: none !important;
@@ -28,3 +34,5 @@
         gap: 7px;
     }
 }
+
+/*----- Dashboard responsive classes ends -----*/

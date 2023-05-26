@@ -9,9 +9,13 @@
 }
 
 .mobile-sidebar-container {
-    height: 70px;
-    position: fixed;
-    bottom: 0;
+    display: block;
+}
+
+@media only screen and (min-width: 950px) {
+    .mobile-sidebar-container {
+        display: none;
+    }
 }
 
 ::ng-deep .p-panelmenu .p-panelmenu-header>a {
